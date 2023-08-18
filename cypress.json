@@ -1,4 +1,1 @@
-///cypress.json is a configuartion file that you can use to configure cypress
-{
-    "WatchForFileChanges": false
-}
+{}
