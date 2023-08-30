@@ -19,7 +19,7 @@ export class TodoPage {
   cy.contains('Active').click()
  }
 
- showAllTodods() {
+ showAllTodos() {
   cy.contains('All').click()
  }
 
@@ -28,7 +28,7 @@ export class TodoPage {
  }
 
  validateNumberOfTodosShown(expectedNumberOfTodos) {
-  cy.get('.todo-list-li').should('have.length', expectedNumberOfTodos)
+  cy.get('.todo-list li').should('have.length', expectedNumberOfTodos)
  }
 
  validateTodoCompletedState(todoIndex, shouldBeCompleted) {

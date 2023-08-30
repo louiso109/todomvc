@@ -1,39 +1,34 @@
+import {TodoPage} from "../../Page-Objects/TodoPage";
 
-import { TodoPage} from "../../Page-Objects/TodoPage";
+  describe('todo-actions', () => {
+    const todoPage = new TodoPage()
 
-describe('todo-actions', () => {
-const todoPage = new TodoPage()
+  beforeEach(() => {
+    todoPage.navigate()
 
-beforeEach(() => {
-  todoPage.navigate()
+    todoPage.addTodo('Clean room')
+  })
 
-  todoPage.addTodo('Clean room')
-})
+  it('should add a new todo to the list', () => {
+    todoPage.validateTodoText(0, 'Clean room')
 
-it('should add a new todo to the list', () => {
-todoPage.validateTodoText(0, 'Clean room')
+    todoPage.validateToggleState(0, false)
+  })
 
-todoPage.validateToggleState(0, false)
-})
+  describe('togglingtodos', () => {
+    it('should toggle test correctly', () => {
+      todoPage.toggleTodo(0)
+      todoPage.validateTodoCompletedState(0, true)
+    })
 
-describe('togglingtodos', () => {
-it('should toggle test correctly', () => {
-  todoPage.toggleTodo(0)
-  todoPage.validateTodoCompletedState(0, true)
-})
+  it('should clear completed', () => {
+    todoPage.toggleTodo(0)
 
-it('should clear completed', () => {
-  todoPage.toggleTodo(0)
+    todoPage.clearCompleted()
 
-  todoPage.clearCompleted()
-
-  todoPage.validateNumberOfTodosShown(0)
-})
-
-})
-
-
-
+    todoPage.validateNumberOfTodosShown(0)
+  })
+  })
 })
 
 
