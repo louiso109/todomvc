@@ -1,14 +1,14 @@
 export class TodoPage {
  navigate() {
-  cypress.visit('http://todomvc-app-for-testing.surge.sh/')
+  cy.visit('http://todomvc-app-for-testing.surge.sh/')
  } 
 
  addTodo(todoText) {
   cy.get('.new-todo').type(todoText + '{enter}')
  }
 
- toggleTodo(TodoIndex) {
-  cy.get('.todo-list li:nth-child(${todoIndex +1}) .toggle').click()
+ toggleTodo(todoIndex) {
+  cy.get(`.todo-list li:nth-child(${todoIndex + 1}) .toggle`).click()
  }
 
  showOnlyCompletedTodos() {
@@ -24,7 +24,7 @@ export class TodoPage {
  }
 
  clearCompleted() {
-  cy.contains('clear completed').click()
+  cy.contains('Clear completed').click()
  }
 
  validateNumberOfTodosShown(expectedNumberOfTodos) {
@@ -37,7 +37,7 @@ export class TodoPage {
   l.should(`${shouldBeCompleted ? '' : 'not.'}have.css`, 'text-decoration-line', 'line-through')
  }
 
-validateTodotext(todoIndex, expectedText) {
+validateTodoText(todoIndex, expectedText) {
 cy.get(`.todo-list li:nth-child(${todoIndex + 1}) label`).should('have.text', expectedText)
 
 }
